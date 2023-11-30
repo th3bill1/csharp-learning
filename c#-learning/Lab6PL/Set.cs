@@ -4,7 +4,7 @@ namespace csharplearning.Lab6PL
 {
     internal class Set
     {
-        private int[] values;
+        private readonly int[] values;
         public Set(params int[] _values) => values = _values.Distinct().ToArray();
         public override string ToString() => GetElementsArrayCapacity() > 0 ? $"{{{string.Join(",", values)}}}" : "{}";
         public int GetElementsArrayCapacity() => values.Length;

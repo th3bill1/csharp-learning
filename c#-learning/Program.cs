@@ -11,6 +11,7 @@
                 Console.WriteLine("\nPlease select a lab to run:");
                 Console.WriteLine("0. Leave");
                 Console.WriteLine("5. Lab 5");
+                Console.WriteLine("6. Lab 6");
                 Console.WriteLine("16. Lab 6PL");
                 lab_num = int.TryParse(Console.ReadLine(), out lab_num) ? lab_num : 0;
                 switch (lab_num)
@@ -19,6 +20,9 @@
                         Console.WriteLine("See you next time!"); break;
                     case 5:
                         Lab5.Lab5.Lab();
+                        break;
+                    case 6:
+                        Lab6.Lab6.Lab();
                         break;
                     case 16:
                         Lab6PL.Lab6PL.Lab();

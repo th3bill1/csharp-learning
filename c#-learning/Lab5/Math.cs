@@ -42,9 +42,4 @@
             return new BoundingBox(min, max);
         }
     }
-    /*Implement structure BoundingBox, which represents bounding box for specific figure. 
-It is represented by two points Vector2: MinimumPoint (storing min X coordinate and min Y coordinate of the figure) and MaximumPoint (storing max X coordinate and max Y coordinate of the figure).
-Overload ToString() for BoundingBox structure to return text in format:
-"BoundingBox: Minimum in A, Maximum in B"*/
-    /*In order to do this write method MergeBoundingBoxes() in structure BoundingBox, which returns bounding box containing all bounding boxes passed as parameters.*/
 }
