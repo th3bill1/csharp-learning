@@ -1,0 +1,65 @@
+﻿/*
+        Stage_1 (3.0 Pts) Implement 'Vector' struct that represents 3D Vector. It should contain:
+            - Private readonly field of type 'int' representing vector's type (TypeVector or TypeColour).
+            - Private float variables representing x,y,z coordinates.
+            - Public properties that allow to set the value of private fields (x,y,z).
+                Get should clamp value to 0-1 range when type is TypeColour.
+            - Public readonly property 'Length' that computes euclidean length of the vector.
+            - Public constructor that initializes x,y,z coordinated and vector's type (default TypeVector which is 0).
+            - Public method that allows coordinates (x,y,z) deconstruction to tuple (C# 7.0).
+            - Public static 'Dot' method that computes dot product of two given vectors.
+            - Public static 'Subtract' method that subtracts two given vectors (in coordinates manner).
+            - Public static 'Multiply' method that multiplies two given vectors (in coordinates manner).
+            - Public static 'Multiply' method that multiplies given vector by scalar (scalar should be first argument).
+            - Public 'ToString' method that overrides Object's class method. Output in format [X, Y, Z] with 2 decimal digits.
+    */
+    public struct Vector
+    {
+        public readonly static int TypeVector = 0;
+        public readonly static int TypeColour = 1;
+    }
+
+    /*
+        Stage_2 (0.5 Pts) Create abstract 'Light' class that represents light hierarchy base class. It should contain:
+            - Public automatic property that represents Intensity (float type).
+            - Public automatic property that represents Colour (Vector type).
+            - Public abstract 'Compute' method that computes result colour (Vector type) from given surface.
+                Method should have 'Surface' argument. Surface struct is defined in Program.cs.
+            - Public constructor that initializes intensity and colour.
+    */
+
+
+
+    /*
+        Stage_3.1 (1.0 Pts) Create 'DirectionalLight' class that derives from abstract 'Light' class. It should contain:
+            - Public automatic property that represents Direction (Vector type).
+            - Public constructor that initializes intensity (float type), colour (Vector type) and direction (Vector type).
+                Call a base class constructor appropriately.
+            - Public 'Compute' method that computes result colour (Vector type) from given surface.
+                Formulas:
+                    LightCoefficient = Dot(LightDirection , SurfaceNormal).
+                    ResultColour = Intensity * LightCoefficient * LightColour * SurfaceColour.
+    */
+
+
+
+    /*
+        Stage_3.2 (1.5 Pts) Create 'PointLight' class that derives from abstract 'Light' class. It should contain:
+            - Public automatic property that represents Location (Vector type).
+            - Public automatic property that represents Range (float type).
+            - Public constructor that initializes intensity (float type), colour (Vector type), direction (Vector type) and range (float type).
+                Call a base class constructor appropriately.
+            - Public 'IsInRange' method that indicates if given surface's point is contained in range of light.
+                It should return bool value and take surface argument.
+                It should have Direction (Vector type) and Distance (float type) out arguments.
+                Formulas:
+                    Direction = LightLocation - SurfaceLocation.
+                    Distance = Length(Direction).
+            - Public 'Compute' method that computes result colour (Vector type) from given surface.
+                If surface is contained in range of light (previous method):
+                Formulas:
+                    LightCoefficient = Dot(Direction , SurfaceNormal).
+                    EffectiveIntensity = Intensity * (1.0f - Distance / Range).
+                    ResultColour = EffectiveIntensity * LightCoefficient * LightColour * SurfaceColour.
+                Otherwise return surface's colour.
+    */

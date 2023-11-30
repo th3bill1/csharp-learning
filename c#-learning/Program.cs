@@ -27,6 +27,12 @@
                     case 16:
                         Lab6PL.Lab6PL.Lab();
                         break;
+                    case 17:
+                        _2019.Lab6.Lab6.Lab();
+                        break;
+                    case 18:
+                        _2019.Lab9.Lab9.Lab();
+                        break;
                     default:
                         Console.WriteLine("No such lab");
                         break;
