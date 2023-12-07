@@ -13,6 +13,7 @@
                 Console.WriteLine("5. Lab 5");
                 Console.WriteLine("6. Lab 6");
                 Console.WriteLine("16. Lab 6PL");
+                Console.WriteLine("100. LabPL 10");
                 lab_num = int.TryParse(Console.ReadLine(), out lab_num) ? lab_num : 0;
                 switch (lab_num)
                 {
@@ -32,6 +33,9 @@
                         break;
                     case 18:
                         _2019.Lab9.Lab9.Lab();
+                        break;
+                    case 100:
+                        _2022PL.Lab10.Lab10PL.Lab10();
                         break;
                     default:
                         Console.WriteLine("No such lab");
