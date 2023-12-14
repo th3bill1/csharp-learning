@@ -37,6 +37,9 @@
                     case 100:
                         _2022PL.Lab10.Lab10PL.Lab10();
                         break;
+                    case 200:
+                        _2019.Lab12.Lab12.Lab();
+                        break;
                     default:
                         Console.WriteLine("No such lab");
                         break;

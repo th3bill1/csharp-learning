@@ -1,0 +1,100 @@
+# Lab 12 - Files, streams, serialization
+
+## Stage 0 (0 points)
+
+1. Create new project
+2. Open project catalog
+3. Change directory to `bin/Debug` and copy here downloaded `data` catalog
+4. If you have created empty project add following references:
+   - `System.Xml`
+   - `Microsoft.CSharp`
+
+## Stage 1 (0.5 points)
+
+Create file `Iris.cs` and within create:
+
+- public enum `IrisSpecies` containing following values:
+  - `Setosa`
+  - `Virginica`
+  - `Versicolor`
+- public class `Iris` containg following properties:
+  - `SepalLength` - `double`
+  - `SepalWidth` - `double`
+  - `PetalLength` - `double`
+  - `PetalWidth` - `double`
+  - `Species` - `IrisSpecies`
+
+## Stage 2 (2 points)
+
+In new file `IrisCsvReader.cs` create public static class `IrisCsvReader`.
+
+`IrisCsvReader` has public static method `ReadFile` that takes single argument `filepath (string)`
+ and returns `IEnumerable<Iris>` based on content of csv file.
+
+If `filepath` points to non existing file then method should return null.
+
+If file exists then method should parse csv file and return list of `Iris`es.
+
+Notes:
+
+- To check whether file exists you cannot use `try` / `catch` mechanism.
+- To read file content use `StreamReader`. Using `File.ReadAllLines` or similiar methods is forbidden.
+- You can use class `Convert` and methods `To*` to parse file. `Enum.TryParse` probably also will be useful.
+- You can assume that all csv files passed to this method won't be malformed, that is:
+  - first row (header) contains column names
+  - each row has fixed number of values equal to number of columns (defined by header)
+  - text values are enclosed with double quotes (double quotes are not part of data)
+
+## Stage 3 (1.5 points)
+
+Create file `DataFrame.cs` and within create following classes:
+
+- `DataFrame<T>` - public generic class that contains:
+  - field `Data` that stores array of values of type `T`
+  - read-only indexer, that returns element from array
+  - public constructor that takes `IEnumerable<T>` and saves that collection in `Data` field
+  - class cannot contains public parameterless constructor
+- `DataFrame` - public static class that contains:
+  - static generic method `IrisFromCsvDirectory` that returns `DataFrame<Iris>` and takes `directorypath (string)` argument.
+    Method should return new `DataFrame<Iris>` based on content of all csv files in given directory.
+    Use `IrisCsvReader` class to read `Iris`es from single csv file.
+
+Stages 4 and 5 can be done in any order. Scoring for that part is:
+
+- 1 mode of serialization (either binary or xml) - 1 point
+- 2 modes of serialization (binary and xml) - 1.5 points
+
+## Stage 4
+
+This stage is about binary serialization of `DataFrame<T>`.
+Perform serialization using `BinaryFormatter` from `System.Runtime.Serialization.Formatters.Binary`.
+
+Describe your choice writing short comment in code, do not speak out loud, so that you don't make task easier for others.
+
+Add to `DataFrame<T>` method `ToBin` that takes `filepath` indicating where file should be saved.
+Method should serialize current instance of `DataFrame<T>`. If the file already exists, it should be overwritten.
+Method does not return anything.
+
+Add to `DataFrame` method `FromBin<T>` that takes `filepath` indicating file that should be deserialized.
+Method should deserialize given file and return instance of `DataFrame<T>`.
+
+Probably you have to add some attributes to existing classes.
+
+## Stage 5
+
+This stage is about xml serialization of `DataFrame<T>`.
+Perform serialization using `XmlSerializer` from `System.Xml.Serialization` namespace.
+
+Add to `DataFrame<T>` method `ToXml` that takes `filepath` indicating where file should be saved.
+Method should serialize current instance of `DataFrame<T>`. If the file already exists, it should be overwritten.
+Method does not return anything.
+
+Add to `DataFrame` method `FromXml<T>` that takes `filepath` indicating file that should be deserialized.
+Method should deserialize given file and return instance of `DataFrame<T>`.
+
+Probably you have to add some attributes to existing classes.
+
+## Stage 6 (0.5 points)
+
+Open `data` catalog. Find and open `__iris.xml` file (notepad, notepad++, vscode, vs). Look at names of tags.
+Adjust `Iris` class so that deserializing of that file succeeds. Use `XmlEnum` and `XmlElement` attributes from `System.Xml.Serialization`.
